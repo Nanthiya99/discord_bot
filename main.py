@@ -96,20 +96,6 @@ async def helpcommand(interaction):
                            timestamp= discord.utils.utcnow())
 
 
-    # ใส่ข้อมูล
-    # emmbed.add_field(name='/hello1', value='Hello Commmand', inline=True)
-    # emmbed.add_field(name='/hello2', value='Hello Commmand', inline=True)
-    # emmbed.add_field(name='/hello3', value='Hello Commmand', inline=False)
-
-    # emmbed.set_author(name='Author', url='https://discord.gg/vKUA4psQMw', icon_url='https://yt3.googleusercontent.com/0qFq3tGT6LVyfLtZc-WCXcV9YyEFQ0M9U5W8qDe36j2xBTN34CJ20dZYQHmBz6aXASmttHI=s900-c-k-c0x00ffffff-no-rj')
-
-    # ใส่รูปเล็ก-ใหญ่
-    # emmbed.set_thumbnail(url='https://yt3.googleusercontent.com/0qFq3tGT6LVyfLtZc-WCXcV9YyEFQ0M9U5W8qDe36j2xBTN34CJ20dZYQHmBz6aXASmttHI=s900-c-k-c0x00ffffff-no-rj')
-    # emmbed.set_image(url='https://i.ytimg.com/vi/KZRa9DQzUpQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCfWDgiBYjFJtrUasd5yxmQZJG_cg')
-
-    # Footer เนื้อหาส่วนท้าย
-    # emmbed.set_footer(text='Footer', icon_url='https://yt3.googleusercontent.com/0qFq3tGT6LVyfLtZc-WCXcV9YyEFQ0M9U5W8qDe36j2xBTN34CJ20dZYQHmBz6aXASmttHI=s900-c-k-c0x00ffffff-no-rj')
-
     await interaction.response.send_message(embed = emmbed)
 
 
