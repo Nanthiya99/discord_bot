@@ -86,19 +86,42 @@ async def namecommand(interaction, name : str):
     await interaction.response.send_message(f"Hello {name}")
 
 
-# Embeds
-
-@bot.tree.command(name='help', description='Bot Commands')
-async def helpcommand(interaction):
-    emmbed = discord.Embed(title='Help Me! - Bot Commands',
-                           description='Bot Commands',
-                           color=0x66FFFF,
-                           timestamp= discord.utils.utcnow())
-
-
     await interaction.response.send_message(embed = emmbed)
 
+# Bot setup
+intents = discord.Intents.default()
+intents.messages = True
+intents.guilds = True
+intents.voice_states = True
 
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Bot is online as {bot.user}!')
+
+@bot.command()
+async def join(ctx):
+    # Check if the user is in a voice channel
+    if ctx.author.voice:
+        # Get the voice channel of the user
+        voice_channel = ctx.author.voice.channel
+        # Connect to the voice channel
+        await voice_channel.connect()
+        await ctx.send(f"Joined {voice_channel.name}!")
+    else:
+        await ctx.send("You are not in a voice channel!")
+
+@bot.command()
+async def leave(ctx):
+    # Check if the bot is in a voice channel
+    if ctx.voice_client:
+        await ctx.voice_client.disconnect()
+        await ctx.send("Disconnected from the voice channel!")
+    else:
+        await ctx.send("I'm not in a voice channel!")
+
+        
 server_on()
 
 bot.run(os.getenv('TOKEN'))
