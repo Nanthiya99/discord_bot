@@ -64,11 +64,28 @@ async def on_message(message):
     # ทำคำสั่ง event แล้วไปทำคำสั่ง bot command ต่อ
 
 
+@bot.event
+async def on_ready():
+    print(f'Bot is online as {bot.user}!')
 
+@bot.command()
+async def join(ctx):
+    # Check if the user is in a voice channel
+    if ctx.author.voice:
+        voice_channel = ctx.author.voice.channel
+     
+        await voice_channel.connect()
+        await ctx.send(f"Joined {voice_channel.name}!")
+    else:
+        await ctx.send("You are not in a voice channel!")
 
 # ///////////////////// Commands /////////////////////
 # กำหนดคำสั่งให้บอท
 
+@bot.command()
+async def join(ctx):
+    await ctx.send("You are not in a voice channel!")
+    
 @bot.command()
 async def hello(ctx):
     await ctx.send(f"hello {ctx.author.name}!")
@@ -93,22 +110,6 @@ async def namecommand(interaction, name : str):
 
     await interaction.response.send_message(embed = emmbed)
 
-
-@bot.event
-async def on_ready():
-    print(f'Bot is online as {bot.user}!')
-
-@bot.command()
-async def join(ctx):
-    # Check if the user is in a voice channel
-    if ctx.author.voice:
-        # Get the voice channel of the user
-        voice_channel = ctx.author.voice.channel
-        # Connect to the voice channel
-        await voice_channel.connect()
-        await ctx.send(f"Joined {voice_channel.name}!")
-    else:
-        await ctx.send("You are not in a voice channel!")
         
 server_on()
 
