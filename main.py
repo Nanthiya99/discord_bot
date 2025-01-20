@@ -5,8 +5,13 @@ from discord import app_commands
 
 from myserver import server_on
 
-bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
+# Bot setup
+intents = discord.Intents.default()
+intents.messages = True
+intents.guilds = True
+intents.voice_states = True
 
+bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
 
 
 # //////////////////// Bot Event /////////////////////////
@@ -88,13 +93,6 @@ async def namecommand(interaction, name : str):
 
     await interaction.response.send_message(embed = emmbed)
 
-# Bot setup
-intents = discord.Intents.default()
-intents.messages = True
-intents.guilds = True
-intents.voice_states = True
-
-bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
@@ -111,16 +109,6 @@ async def join(ctx):
         await ctx.send(f"Joined {voice_channel.name}!")
     else:
         await ctx.send("You are not in a voice channel!")
-
-@bot.command()
-async def leave(ctx):
-    # Check if the bot is in a voice channel
-    if ctx.voice_client:
-        await ctx.voice_client.disconnect()
-        await ctx.send("Disconnected from the voice channel!")
-    else:
-        await ctx.send("I'm not in a voice channel!")
-
         
 server_on()
 
