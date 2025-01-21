@@ -68,23 +68,8 @@ async def on_message(message):
 async def on_ready():
     print(f'Bot is online as {bot.user}!')
 
-@bot.command()
-async def join(ctx):
-    # Check if the user is in a voice channel
-    if ctx.author.voice:
-        voice_channel = ctx.author.voice.channel
-     
-        await voice_channel.connect()
-        await ctx.send(f"Joined {voice_channel.name}!")
-    else:
-        await ctx.send("You are not in a voice channel!")
-
 # ///////////////////// Commands /////////////////////
 # กำหนดคำสั่งให้บอท
-
-@bot.command()
-async def join(ctx):
-    await ctx.send("You are not in a voice channel!")
     
 @bot.command()
 async def hello(ctx):
